@@ -40,7 +40,8 @@ public class LoginController {
 			model.addAttribute("cliente", clienteDTO);
 			return "paginaPrincipal";
 		}
-			return "login";
+			
+			return "sddsasdasdasd";
 		
 		
 		
