@@ -41,7 +41,7 @@ public class LoginController {
 			return "paginaPrincipal";
 		}
 			
-			return "sddsasdasdasd";
+			return "login";
 		
 		
 		
@@ -50,7 +50,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.GET)
 	public String registro(){
-		return "registro";
+		return "registrooooooooo";
 	}
 	
 	@RequestMapping(value = "/registro", method = RequestMethod.POST)
