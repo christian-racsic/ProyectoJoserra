@@ -1,0 +1,5 @@
+package org.christian.tienda_venta_servicios_deporte.model;
+
+public class Cliente {
+
+}

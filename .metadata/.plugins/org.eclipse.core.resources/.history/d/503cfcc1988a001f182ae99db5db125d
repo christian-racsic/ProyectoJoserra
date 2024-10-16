@@ -1,0 +1,17 @@
+package org.christian.tienda_venta_servicios_deporte.mvc;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import jakarta.servlet.*;
+@Controller
+public class LoginController {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String loginControler(){
+		return "login";
+	}
+	
+	
+	
+}

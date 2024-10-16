@@ -1,0 +1,16 @@
+package org.christian.tienda_venta_servicios_deporte.srv;
+
+import java.util.ArrayList;
+
+import org.christian.tienda_venta_servicios_deporte.model.Cliente;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ClienteService {
+	ArrayList<Cliente> clientes = new ArrayList<>();
+	
+	usuarios.add(new Usuario("usuario1", "password1", "usuario1@example.com", new ArrayList<>()));
+	usuarios.add(new Usuario("usuario2", "password2", "usuario2@example.com", new ArrayList<>()));
+	usuarios.add(new Usuario("usuario3", "password3", "usuario3@example.com", new ArrayList<>()));
+	usuarios.add(new Usuario("usuario4", "password4", "usuario4@example.com", new ArrayList<>()));
+}

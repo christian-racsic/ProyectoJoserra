@@ -1,0 +1,41 @@
+package org.christian.tienda_venta_servicios_deporte.srv;
+
+import java.util.ArrayList;
+
+import org.christian.tienda_venta_servicios_deporte.model.Cliente;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClienteService {
+	private static ArrayList<Cliente> clientes = new ArrayList<>();
+	
+	
+	static {
+		clientes.add(new Cliente(1,"usuario1", "password1", "usuario1@example.com"));
+		clientes.add(new Cliente(2,"usuario2", "password2", "usuario2@example.com"));
+		clientes.add(new Cliente(3,"usuario3", "password3", "usuario3@example.com"));
+		clientes.add(new Cliente(4,"usuario4", "password4", "usuario4@example.com"));
+	}
+	
+	public Cliente validarClienteInicio(String correo, String password) {
+	    return clientes.stream()
+	        .filter(cliente -> cliente.getEmail().equals(correo) && cliente.getPassword().equals(password))
+	        .findFirst()
+	        .orElse(null);
+	}
+	
+	public boolean validarRegistro(String correo) {
+		for(Cliente client : clientes) {
+			if(client.getEmail().equalsIgnoreCase(correo)) {
+				return false;
+			}
+		}
+		
+		return true;
+			
+	}
+	
+	
+	
+}

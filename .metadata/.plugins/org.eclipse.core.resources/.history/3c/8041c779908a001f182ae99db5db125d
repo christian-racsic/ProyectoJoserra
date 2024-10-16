@@ -1,0 +1,11 @@
+package org.christian.tienda_venta_servicios_deporte.model;
+
+public class Cliente {
+	private Long id;
+    private String usuario;
+    private String password;
+    private String email;
+    private List<Reservas> reservations;
+    
+    
+}

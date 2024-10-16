@@ -1,0 +1,13 @@
+package org.christian.tienda_venta_servicios_deporte;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TiendaVentaServiciosDeporteApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TiendaVentaServiciosDeporteApplication.class, args);
+	}
+
+}
