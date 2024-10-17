@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:00:34:08 +0200] "GET / HTTP/1.1" 404 760
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:00:34:16 +0200] "GET / HTTP/1.1" 404 760
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:00:34:20 +0200] "GET / HTTP/1.1" 404 760
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:01:07:41 +0200] "GET /tienda_venta_servicios_deporte/registro HTTP/1.1" 200 2240
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:01:07:42 +0200] "GET /tienda_venta_servicios_deporte/admin HTTP/1.1" 200 1996
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:01:16:01 +0200] "GET /christianCiscar_primer_app_spring_boot/add-alumno HTTP/1.1" 404 813
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:01:16:02 +0200] "GET /christianCiscar_primer_app_spring_boot/docs-alumno?dni=1111111 HTTP/1.1" 404 814
+0:0:0:0:0:0:0:1 - - [17/Oct/2024:01:16:02 +0200] "GET /christianCiscar_primer_app_spring_boot/ HTTP/1.1" 404 803
