@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class Reservas {
 	private Long id;
-    private LocalDate date;
-    private LocalTime time;
-    private Servicio service;
-    private Cliente user;
+    private LocalDate fecha;
+    private LocalTime tiempo;
+    private Servicio servicio;
+    private Cliente cliente;
 }

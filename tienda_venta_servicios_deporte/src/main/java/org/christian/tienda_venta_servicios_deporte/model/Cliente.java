@@ -46,8 +46,8 @@ public class Cliente {
 	public List<Reservas> getReservas() {
 		return reservas;
 	}
-	public void setReservas(List<Reservas> reservations) {
-		this.reservas = reservations;
+	public void setReservas(List<Reservas> reservas) {
+		this.reservas = reservas;
 	}
     
     
