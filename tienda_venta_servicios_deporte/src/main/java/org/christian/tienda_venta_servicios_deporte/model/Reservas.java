@@ -9,4 +9,36 @@ public class Reservas {
     private LocalTime tiempo;
     private Servicio servicio;
     private Cliente cliente;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public LocalDate getFecha() {
+		return fecha;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	public LocalTime getTiempo() {
+		return tiempo;
+	}
+	public void setTiempo(LocalTime tiempo) {
+		this.tiempo = tiempo;
+	}
+	public Servicio getServicio() {
+		return servicio;
+	}
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+    
+    
 }

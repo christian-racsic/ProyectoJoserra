@@ -6,6 +6,7 @@ import org.christian.tienda_venta_servicios_deporte.dto.ClienteDTO;
 import org.christian.tienda_venta_servicios_deporte.mapper.ClienteMapper;
 import org.christian.tienda_venta_servicios_deporte.model.Cliente;
 import org.christian.tienda_venta_servicios_deporte.srv.ClienteService;
+import org.christian.tienda_venta_servicios_deporte.srv.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,8 @@ import org.springframework.ui.Model;
 public class LoginController {
 	@Autowired
 	ClienteService clienteService;
-	
+	@Autowired
+	ServicioService servicioService;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String loginControler(){
 		return "login";
@@ -38,6 +40,8 @@ public class LoginController {
            
             ClienteDTO clienteDTO = ClienteMapper.INSTANCE.clienteToClienteDTO(cliente);
             model.addAttribute("cliente", clienteDTO);
+            
+            
             return "paginaPrincipal"; 
         }
         
@@ -80,6 +84,11 @@ public class LoginController {
 	    return "admin";
 	}
 	
+	@RequestMapping(value = "/servicios", method = RequestMethod.GET)
+	public String servicioss(Model model){
+		model.addAttribute("servicios", servicioService.obtenerServicios());
+		return "reservas";
+	}
 	
 	
 	

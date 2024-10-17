@@ -1,0 +1,12 @@
+package org.christian.tienda_venta_servicios_deporte.srv;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ServicioService {
+	 private final String[] serviciosDisponibles = {"Natación", "Pádel", "Tenis", "Gym", "Crossfit"};
+	 
+	 public String[] listarServicio() {
+		 return serviciosDisponibles;
+	 }
+}

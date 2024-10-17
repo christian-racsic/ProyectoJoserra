@@ -4,37 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Servicio {
-
-    public enum TipoServicio {
-        NATACION, PADEL, TENIS, GYM, CROSSFIT
-    }
-
-    private TipoServicio tipoServicio;
-    private List<Reservas> reservas;
-
-    public Servicio(TipoServicio tipoServicio) {
-        this.tipoServicio = tipoServicio;
-        this.reservas = new ArrayList<>();
-    }
-
- 
-    public TipoServicio getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public void setTipoServicio(TipoServicio tipoServicio) {
-        this.tipoServicio = tipoServicio;
-    }
-
-    public List<Reservas> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reservas> reservas) {
-        this.reservas = reservas;
-    }
-
-    public void agregarReserva(Reservas reserva) {
-        this.reservas.add(reserva);
-    }
+	private String nombre;
+	private String imagen;
+	private List<Reservas> reservas;
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public List<Reservas> getReservas() {
+		return reservas;
+	}
+	public void setReservas(List<Reservas> reservas) {
+		this.reservas = reservas;
+	}
+	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public Servicio(String nombre) {
+		super();
+		this.nombre = nombre;
+		this.reservas = new ArrayList<Reservas>();
+	}
+	public Servicio(String nombre, String imagen) {
+		super();
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.reservas = new ArrayList<Reservas>();
+	}
+	
+	
+	
 }
