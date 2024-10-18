@@ -7,4 +7,3 @@ INDEX VERSION 1.4+C:\Users\chris\Desktop\ProyectoJoserra\.metadata\.plugins\org.
 489820113.index
 262511891.index
 1503115538.index
-432223999.index

@@ -15,8 +15,8 @@
         <div class="d-flex justify-content-between">
             <h1 class="text-center mb-4">Nuestros Servicios</h1>
             <div>
-                <a href="/logout" class="btn btn-secondary">Cerrar Sesión</a>
-                <a href="/paginaPrincipal" class="btn btn-primary">Volver</a>
+                <a href="logoutServ" class="btn btn-secondary">Cerrar Sesión</a>
+                <a href="paginaPrincipalServ" class="btn btn-primary">Volver</a>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
                                 <h5 class="card-title text-center">${servicio.nombre}</h5>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="#" class="btn btn-primary">Reservar</a>
+                                <a href="hacerReserva?nombreServicio=${servicio.nombre}" class="btn btn-primary">Reservar</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,11 @@
+package org.christian.tienda_venta_servicios_deporte.mvc;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ServicioController {
+	@RequestMapping(value="", method = RquestMethod.POST)
+	public String serviceRet() {
+		return "paginaPrincipal";
+	}
+}
