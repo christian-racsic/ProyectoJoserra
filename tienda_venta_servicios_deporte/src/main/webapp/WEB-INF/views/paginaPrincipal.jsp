@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Tus Reservas</h1>
+        <h1 class="text-center">Tus Reservas ${cliente.usuario}</h1>
         
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
@@ -25,9 +25,9 @@
                 <c:if test="${not empty reservas}">
                     <c:forEach var="reserva" items="${reservas}">
                         <tr>
-                            <td>${reserva.service.nombre}</td>
-                            <td>${reserva.date}</td>
-                            <td>${reserva.time}</td>
+                            <td>${reserva.servicio.nombre}</td>
+                            <td>${reserva.fecha}</td>
+                            <td>${reserva.tiempo}</td>
                         </tr>
                     </c:forEach>
                 </c:if>

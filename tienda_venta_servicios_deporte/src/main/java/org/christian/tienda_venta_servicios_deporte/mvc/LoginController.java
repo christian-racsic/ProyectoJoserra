@@ -9,6 +9,7 @@ import org.christian.tienda_venta_servicios_deporte.srv.ClienteService;
 import org.christian.tienda_venta_servicios_deporte.srv.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,6 +87,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/servicios", method = RequestMethod.GET)
 	public String servicioss(Model model){
+		
 		model.addAttribute("servicios", servicioService.obtenerServicios());
 		return "reservas";
 	}
