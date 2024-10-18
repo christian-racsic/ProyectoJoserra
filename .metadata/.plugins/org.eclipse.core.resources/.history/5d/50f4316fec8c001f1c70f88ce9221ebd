@@ -1,0 +1,12 @@
+package org.christian.tienda_venta_servicios_deporte.mvc;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ServicioController {
+	@RequestMapping(value="/paginaPrincipal", method = RequestMethod.POST)
+	public String serviceRet() {
+		return "paginaPrincipal";
+	}
+}

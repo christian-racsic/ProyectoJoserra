@@ -1,0 +1,23 @@
+package org.christian.tienda_venta_servicios_deporte.mvc;
+
+import org.christian.tienda_venta_servicios_deporte.model.Cliente;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class ServicioController {
+	@RequestMapping(value="/paginaPrincipalServ", method = RequestMethod.GET)
+	public String irPaginaPrincipal(@ModelAttribute("cliente") Cliente cliente,Model model) {
+		model.addAttribute("cliente", cliente);
+	    return "paginaPrincipal";
+	}
+	
+	@RequestMapping(value="/logoutServ", method = RequestMethod.GET)
+	public String logoutServ(Model model) {
+		model.addAttribute("cliente", null);
+		return "login";
+	}
+}

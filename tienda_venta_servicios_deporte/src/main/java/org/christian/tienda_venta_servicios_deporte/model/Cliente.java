@@ -17,7 +17,8 @@ public class Cliente {
 		this.usuario = usuario;
 		this.password = password;
 		this.email = email;
-		this.reservas = new ArrayList<Reservas>();
+		 this.reservas = new ArrayList<>();
+		
 	}
 	public Integer getId() {
 		return id;
@@ -49,6 +50,8 @@ public class Cliente {
 	public void setReservas(List<Reservas> reservas) {
 		this.reservas = reservas;
 	}
-    
+	public void agregarReserva(Reservas reserva) {
+        reservas.add(reserva);
+    }
     
 }
