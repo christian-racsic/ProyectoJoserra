@@ -1,0 +1,25 @@
+package org.christian.tienda_venta_servicios_deporte.srv;
+
+import java.util.ArrayList;
+
+import org.christian.tienda_venta_servicios_deporte.model.Servicio;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ServicioService {
+	 static ArrayList <Servicio> servicios = new ArrayList<>();
+	 
+	 static {
+	        servicios.add(new Servicio("Natación","../img/natacion.jpg"));
+	        servicios.add(new Servicio("Pádel", "../org.christian.tienda_venta_servicios_deporte.img/padel.jpg"));
+	        servicios.add(new Servicio("Tenis", "../org.christian.tienda_venta_servicios_deporte.img/tenis.jpg"));
+	        servicios.add(new Servicio("Gym", "../org.christian.tienda_venta_servicios_deporte.img/gym.jpg"));
+	        servicios.add(new Servicio("Crossfit", "../org.christian.tienda_venta_servicios_deporte.img/crosfit.jpg"));
+	    }
+
+	    public ArrayList<Servicio> obtenerServicios() {
+	        return servicios;
+	    }
+	    
+	 
+}

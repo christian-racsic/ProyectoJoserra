@@ -8,7 +8,7 @@ public class Cliente {
     private String usuario;
     private String password;
     private String email;
-    private List<Reservas> reservations;
+    private List<Reservas> reservas;
     
     
 	public Cliente(Integer id, String usuario, String password, String email) {
@@ -17,7 +17,7 @@ public class Cliente {
 		this.usuario = usuario;
 		this.password = password;
 		this.email = email;
-		this.reservations = new ArrayList<Reservas>();
+		this.reservas = new ArrayList<Reservas>();
 	}
 	public Integer getId() {
 		return id;
@@ -43,11 +43,11 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public List<Reservas> getReservations() {
-		return reservations;
+	public List<Reservas> getReservas() {
+		return reservas;
 	}
-	public void setReservations(List<Reservas> reservations) {
-		this.reservations = reservations;
+	public void setReservas(List<Reservas> reservas) {
+		this.reservas = reservas;
 	}
     
     

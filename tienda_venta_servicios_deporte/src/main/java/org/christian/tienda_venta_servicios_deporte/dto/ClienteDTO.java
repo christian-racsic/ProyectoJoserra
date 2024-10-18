@@ -2,10 +2,18 @@ package org.christian.tienda_venta_servicios_deporte.dto;
 
 public class ClienteDTO {
     private String usuario;
-    private String correo;
+    private String password;
+    private String email; // Asegúrate de que esta propiedad exista
+
+    // Constructor
+    public ClienteDTO(String usuario, String password, String email) {
+        this.usuario = usuario;
+        this.password = password;
+        this.email = email;
+    }
 
     // Getters y Setters
-    public String getusuario() {
+    public String getUsuario() {
         return usuario;
     }
 
@@ -13,11 +21,19 @@ public class ClienteDTO {
         this.usuario = usuario;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
