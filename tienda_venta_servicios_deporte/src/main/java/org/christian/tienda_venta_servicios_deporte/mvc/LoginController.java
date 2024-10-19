@@ -120,8 +120,15 @@ public class LoginController {
         // Mensaje o modelo adicional, si es necesario
         model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + nombreServicio);
         model.addAttribute("cliente", cliente);
-        model.addAttribute("reservas", cliente.getReservas());
+        
         System.out.println(cliente.getUsuario()+"formulario final");
         return "paginaPrincipal"; // Redirigir a la vista de login o a otra vista que desees
     }
+    
+    @RequestMapping(value="/paginaPrincipalServ", method = RequestMethod.GET)
+	public String irPaginaPrincipal(Model model) {
+		model.addAttribute("cliente", cliente);
+		
+	    return "paginaPrincipal";
+	}
 }

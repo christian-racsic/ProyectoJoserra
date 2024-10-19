@@ -18,13 +18,6 @@ public class ServicioController {
 	@Autowired
 	ServicioService servicioservice;
 	
-	@RequestMapping(value="/paginaPrincipalServ", method = RequestMethod.GET)
-	public String irPaginaPrincipal(@ModelAttribute("cliente") Cliente cliente,Model model) {
-		model.addAttribute("cliente", cliente);
-		model.addAttribute("reservas", cliente.getReservas());
-	    return "paginaPrincipal";
-	}
-	
 	@RequestMapping(value="/logoutServ", method = RequestMethod.GET)
 	public String logoutServ(Model model) {
 		model.addAttribute("cliente", null);
