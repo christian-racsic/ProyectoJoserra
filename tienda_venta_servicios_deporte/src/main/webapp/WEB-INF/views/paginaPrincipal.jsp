@@ -12,7 +12,13 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Tus Reservas ${cliente.usuario}</h1>
-        
+        <div class="d-flex justify-content-between">
+            <h1 class="text-center mb-4">Nuestros Servicios</h1>
+            <div>
+                <a href="logoutServ" class="btn btn-secondary">Cerrar Sesión</a>
+                
+            </div>
+        </div>
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
