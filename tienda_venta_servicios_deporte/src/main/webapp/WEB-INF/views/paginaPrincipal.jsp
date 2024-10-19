@@ -22,8 +22,8 @@
                 </tr>
             </thead>
             <tbody>
-                <c:if test="${not empty reservas}">
-                    <c:forEach var="reserva" items="${reservas}">
+                <c:if test="${not empty cliente.reservas}">
+                    <c:forEach var="reserva" items="${cliente.reservas}">
                         <tr>
                             <td>${reserva.servicio.nombre}</td>
                             <td>${reserva.fecha}</td>
@@ -32,7 +32,7 @@
                     </c:forEach>
                 </c:if>
                 
-                <c:if test="${empty reservas}">
+                <c:if test="${empty cliente.reservas}">
                     <tr>
                         <td colspan="3" class="text-center text-muted">No tienes reservas aún.</td>
                     </tr>
