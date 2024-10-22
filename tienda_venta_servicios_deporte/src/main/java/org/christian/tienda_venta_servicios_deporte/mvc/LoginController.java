@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 @Controller
 @SessionAttributes("cliente")
 public class LoginController {
@@ -66,16 +70,29 @@ public class LoginController {
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public String procesaRegistro(Cliente clientee,Model model) {
-        if (clienteService.validarRegistro(clientee.getEmail())) {
-            return "registro";
-        }
-        cliente = clienteService.nuevoCliente(clientee.getUsuario(), clientee.getEmail(), clientee.getPassword());
-        /*cliente = clienteService.nuevoCliente(usuario, email, password);*/
-        System.out.println(cliente.getUsuario());
-        model.addAttribute("cliente", cliente);
+    public String procesaRegistro(Model model,@Valid Cliente clientee, BindingResult validacion) {
+        String errores = "";
+    	if(validacion.hasErrors()) {
+    		return "registro";
+    	}
         
-        return "paginaPrincipal";
+    	
+    	try {
+    		if (clienteService.validarRegistro(clientee.getEmail())) {
+                return "registro";
+            }
+            cliente = clienteService.nuevoCliente(clientee.getUsuario(), clientee.getEmail(), clientee.getPassword());
+            /*cliente = clienteService.nuevoCliente(usuario, email, password);*/
+            System.out.println(cliente.getUsuario());
+            model.addAttribute("cliente", cliente);
+            
+            return "paginaPrincipal";
+    	}catch(Exception e) {
+    		errores = e.toString();
+    	}
+    	model.addAttribute("errores", errores);
+    	return "registro";
+    	
     }
     
     @RequestMapping(value = "/paginaPrincipal", method = RequestMethod.GET)

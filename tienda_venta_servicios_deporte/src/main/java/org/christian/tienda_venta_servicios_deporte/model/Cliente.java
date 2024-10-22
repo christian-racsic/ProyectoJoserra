@@ -4,11 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Cliente  implements Serializable{
 	private static final long SerialVersionUID = 1L;
 	private Integer id;
-    private String usuario;
+    @Size(min=3, message="El nombre debe de tener mínimo 3 letras")
+    @NotNull(message = "No puede estar vacio el nombre")
+	private String usuario;
+    @NotNull(message = "No puede estar vacio lac contraseña")
+    @Size(min=9, message="La contraseña debe de tener mínimo 9 carácteres")
     private String password;
+    @NotNull(message = "No puede estar vacio el correo")
     private String email;
     private List<Reservas> reservas;
     
