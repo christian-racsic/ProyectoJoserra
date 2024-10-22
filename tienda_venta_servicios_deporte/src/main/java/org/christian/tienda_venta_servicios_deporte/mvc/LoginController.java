@@ -38,10 +38,16 @@ public class LoginController {
     public String procesaLogin(@RequestParam String correo, @RequestParam String password, Model model) {
         
     	cliente = clienteService.validarClienteInicio(correo, password);
+       
+    	
+    	if(correo.equalsIgnoreCase("admin@admin.es")&& password.equalsIgnoreCase("admin")) {
+    		 model.addAttribute("listaClientes", clienteService.listarClientes());
+    		 return "admin";
+    	}
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
             
-            // Redirigir a la página principal
+            
             return "redirect:/paginaPrincipal"; 
         }
         
@@ -49,28 +55,34 @@ public class LoginController {
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
-    public String registro() {
-        return "registro";
+    public String registro(Model model) {
+    	
+    		model.addAttribute("cliente", new Cliente("Nombre de usuario","Contraseña","nombreUsuarios@hotamil.com"));      
+    			
+    		return "registro";
+    
+    
+    
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public String procesaRegistro(@RequestParam String usuario, @RequestParam String correo, @RequestParam String contraseña, Model model) {
-        if (clienteService.validarRegistro(correo)) {
+    public String procesaRegistro(Cliente clientee,Model model) {
+        if (clienteService.validarRegistro(clientee.getEmail())) {
             return "registro";
         }
-        
-        Cliente client = clienteService.nuevoCliente(usuario, correo, contraseña);
-        System.out.println(client.getUsuario());
-        model.addAttribute("cliente", client);
+        cliente = clienteService.nuevoCliente(clientee.getUsuario(), clientee.getEmail(), clientee.getPassword());
+        /*cliente = clienteService.nuevoCliente(usuario, email, password);*/
+        System.out.println(cliente.getUsuario());
+        model.addAttribute("cliente", cliente);
         
         return "paginaPrincipal";
     }
     
     @RequestMapping(value = "/paginaPrincipal", method = RequestMethod.GET)
     public String mostrarPaginaPrincipal(Model model) {
-        // Lógica adicional si es necesario
+       
     	
-        return "paginaPrincipal"; // Asegúrate de que este nombre coincide con tu archivo de vista.
+        return "paginaPrincipal"; 
     }
     
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -100,29 +112,29 @@ public class LoginController {
             
             Model model) {
 
-        // Obtener el servicio usando el nombre
+        
         Servicio servicio = servicioService.obtenerServicioporNombre(nombreServicio);
         
-        // Comprobar si el servicio fue encontrado
+        
         if (servicio == null) {
             model.addAttribute("error", "El servicio no se encontró.");
             return "error"; // Redirigir a una vista de error si es necesario
         }
 
-        // Convertir los parámetros a LocalDate y LocalTime
+       
         LocalDate fecha = LocalDate.parse(fechaReserva);
         LocalTime hora = LocalTime.parse(horaReserva);
 
-        // Crear la reserva con el cliente y el servicio
+        
         Reservas reserva = new Reservas(fecha, hora, servicio, cliente);
         reservaService.guardarReserva(reserva,cliente); // Guardar la reserva
 
-        // Mensaje o modelo adicional, si es necesario
+        
         model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + nombreServicio);
         model.addAttribute("cliente", cliente);
         
         System.out.println(cliente.getUsuario()+"formulario final");
-        return "paginaPrincipal"; // Redirigir a la vista de login o a otra vista que desees
+        return "paginaPrincipal"; 
     }
     
     @RequestMapping(value="/paginaPrincipalServ", method = RequestMethod.GET)

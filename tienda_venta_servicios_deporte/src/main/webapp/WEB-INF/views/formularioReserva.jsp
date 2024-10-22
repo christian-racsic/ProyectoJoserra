@@ -9,8 +9,7 @@
         /* Imagen de fondo */
         body {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://images.unsplash.com/photo-1519923042283-5f733b288b53?auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
+url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1950&q=80');            background-size: cover;
             background-position: center;
             height: 100vh;
             color: #fff;
