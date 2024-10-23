@@ -1,13 +1,11 @@
 package org.christian.tienda_venta_servicios_deporte.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reservas implements Serializable{
-	private static final long SerialVersionUID = 1L;
+public class Reservas {
 	private Long id = 0L;
     private LocalDate fecha;
     private LocalTime tiempo;
@@ -23,11 +21,6 @@ public class Reservas implements Serializable{
 		this.servicio = servicio;
 		this.cliente = cliente;
 	}
-	
-	public Reservas() {
-		super();
-	}
-
 	public List<Reservas> getReservas() {
 		return reservas;
 	}
