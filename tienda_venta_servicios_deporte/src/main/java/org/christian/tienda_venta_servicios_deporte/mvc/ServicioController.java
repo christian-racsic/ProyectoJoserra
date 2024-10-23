@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 public class ServicioController {
 	@Autowired
-	ServicioService servicioservice;
+    ServicioService servicioService;
 	
 	@RequestMapping(value="/logoutServ", method = RequestMethod.GET)
 	public String logoutServ(Model model) {
@@ -25,5 +25,15 @@ public class ServicioController {
 		return "login";
 	}
 	
-	
+	@RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
+	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,
+	                            @ModelAttribute("cliente") Cliente cliente,
+	                            Model model) {
+	    model.addAttribute("cliente", cliente);
+	    Servicio servicio = servicioService.obtenerServicioporNombre(nombreServicio);
+	    Reservas reserva = new Reservas();
+	    model.addAttribute("servicio", servicio);
+	    model.addAttribute("reservas", reserva); 
+	    return "formularioReserva";
+	}
 }

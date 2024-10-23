@@ -127,7 +127,7 @@ public class LoginController {
             Reservas reservaa,  // Captura el objeto completo
             @ModelAttribute("cliente") Cliente cliente,  // Asegúrate de tener el cliente disponible
             Model model) {
-
+    	Servicio servicio = reservaa.getServicio();
           // Obtén el servicio de la reserva
         if (servicio == null) {
             model.addAttribute("error", "El servicio no se encontró.");
@@ -155,15 +155,5 @@ public class LoginController {
 	    return "paginaPrincipal";
 	}
     
-    @RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
-	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,
-	                            @ModelAttribute("cliente") Cliente cliente,
-	                            Model model) {
-	    model.addAttribute("cliente", cliente);
-	    servicio = servicioService.obtenerServicioporNombre(nombreServicio);
-	    Reservas reserva = new Reservas();
-	    /*model.addAttribute("servicio", servicio);*/
-	    model.addAttribute("reservas", reserva); 
-	    return "formularioReserva";
-	}
+    
 }

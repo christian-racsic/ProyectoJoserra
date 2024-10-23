@@ -62,7 +62,11 @@ url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fi
     <div class="container mt-5">
         <h2 class="text-center">Formulario de Reserva</h2>
         <mvc:form action="hacerReservaFinal" method="post" modelAttribute="reservas"> 
-    
+    <div class="mb-3">
+        <mvc:label path="servicio" class="form-label">Nombre del Servicio</mvc:label>
+		<mvc:input path="servicio" type="text" class="form-control" id="nombreServicio" readonly/>
+        <mvc:errors path="servicio" cssClass="text-warning"/>
+    </div>
     <div class="mb-3">
         <mvc:label path="fecha" class="form-label">Fecha de Reserva</mvc:label>
         <mvc:input path="fecha" type="date" class="form-control" id="fechaReserva"/>
