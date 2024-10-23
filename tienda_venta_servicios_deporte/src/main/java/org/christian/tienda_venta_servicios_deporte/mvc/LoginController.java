@@ -38,6 +38,7 @@ public class LoginController {
         return "login";
     }
     Cliente cliente = null;
+    Servicio servicio = null;
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String procesaLogin(@RequestParam String correo, @RequestParam String password, Model model) {
         
@@ -123,34 +124,27 @@ public class LoginController {
     
     @RequestMapping(value = "/hacerReservaFinal", method = RequestMethod.POST)
     public String hacerReservaFinal(
-            @RequestParam String nombreServicio,
-            @RequestParam String fechaReserva,
-            @RequestParam String horaReserva,
-            
+            Reservas reservaa,  // Captura el objeto completo
+            @ModelAttribute("cliente") Cliente cliente,  // Asegúrate de tener el cliente disponible
             Model model) {
 
-        
-        Servicio servicio = servicioService.obtenerServicioporNombre(nombreServicio);
-        
-        
+          // Obtén el servicio de la reserva
         if (servicio == null) {
             model.addAttribute("error", "El servicio no se encontró.");
             return "error"; // Redirigir a una vista de error si es necesario
         }
 
-       
-        LocalDate fecha = LocalDate.parse(fechaReserva);
-        LocalTime hora = LocalTime.parse(horaReserva);
-
+        LocalDate fecha = reservaa.getFecha();
+        LocalTime tiempo = reservaa.getTiempo();
+        Reservas reserve = new Reservas (fecha,tiempo,servicio,cliente);
         
-        Reservas reserva = new Reservas(fecha, hora, servicio, cliente);
-        reservaService.guardarReserva(reserva,cliente); // Guardar la reserva
-
         
-        model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + nombreServicio);
+        reservaService.guardarReserva(reserve, cliente);
+
+        model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + reserve.getServicio().getNombre());
         model.addAttribute("cliente", cliente);
-        
-        System.out.println(cliente.getUsuario()+"formulario final");
+
+        System.out.println(cliente.getUsuario() + " formulario final");
         return "paginaPrincipal"; 
     }
     
@@ -159,5 +153,17 @@ public class LoginController {
 		model.addAttribute("cliente", cliente);
 		
 	    return "paginaPrincipal";
+	}
+    
+    @RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
+	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,
+	                            @ModelAttribute("cliente") Cliente cliente,
+	                            Model model) {
+	    model.addAttribute("cliente", cliente);
+	    servicio = servicioService.obtenerServicioporNombre(nombreServicio);
+	    Reservas reserva = new Reservas();
+	    /*model.addAttribute("servicio", servicio);*/
+	    model.addAttribute("reservas", reserva); 
+	    return "formularioReserva";
 	}
 }

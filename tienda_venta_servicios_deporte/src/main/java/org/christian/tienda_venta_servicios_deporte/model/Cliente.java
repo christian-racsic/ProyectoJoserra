@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Cliente  implements Serializable{
@@ -13,10 +14,11 @@ public class Cliente  implements Serializable{
     @Size(min=3, message="El nombre debe de tener mínimo 3 letras")
     @NotNull(message = "No puede estar vacio el nombre")
 	private String usuario;
-    @NotNull(message = "No puede estar vacio lac contraseña")
+    @NotNull(message = "No puede estar vacia la contraseña")
     @Size(min=9, message="La contraseña debe de tener mínimo 9 carácteres")
     private String password;
     @NotNull(message = "No puede estar vacio el correo")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "El correo electrónico no es válido")
     private String email;
     private List<Reservas> reservas;
     

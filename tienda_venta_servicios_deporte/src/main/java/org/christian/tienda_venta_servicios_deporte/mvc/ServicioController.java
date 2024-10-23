@@ -1,6 +1,7 @@
 package org.christian.tienda_venta_servicios_deporte.mvc;
 
 import org.christian.tienda_venta_servicios_deporte.model.Cliente;
+import org.christian.tienda_venta_servicios_deporte.model.Reservas;
 import org.christian.tienda_venta_servicios_deporte.model.Servicio;
 import org.christian.tienda_venta_servicios_deporte.srv.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,5 @@ public class ServicioController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
-	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,@ModelAttribute("cliente") Cliente cliente,Model model) {
-		model.addAttribute("cliente", cliente);
-		Servicio servicio = servicioservice.obtenerServicioporNombre(nombreServicio);
-		model.addAttribute("servicio", servicio);
-		return "formularioReserva";
-		
-	}
+	
 }
