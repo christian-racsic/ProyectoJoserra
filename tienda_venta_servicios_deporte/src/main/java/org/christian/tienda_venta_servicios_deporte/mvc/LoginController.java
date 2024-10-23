@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 @Controller
 @SessionAttributes("cliente")
 public class LoginController {
@@ -34,14 +38,21 @@ public class LoginController {
         return "login";
     }
     Cliente cliente = null;
+    Servicio servicio = null;
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String procesaLogin(@RequestParam String correo, @RequestParam String password, Model model) {
         
     	cliente = clienteService.validarClienteInicio(correo, password);
+       
+    	
+    	if(correo.equalsIgnoreCase("admin@admin.es")&& password.equalsIgnoreCase("admin")) {
+    		 model.addAttribute("listaClientes", clienteService.listarClientes());
+    		 return "admin";
+    	}
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
             
-            // Redirigir a la página principal
+            
             return "redirect:/paginaPrincipal"; 
         }
         
@@ -49,28 +60,47 @@ public class LoginController {
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
-    public String registro() {
-        return "registro";
+    public String registro(Model model) {
+    	
+    		model.addAttribute("cliente", new Cliente("Nombre de usuario","Contraseña","nombreUsuarios@hotamil.com"));      
+    			
+    		return "registro";
+    
+    
+    
     }
     
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public String procesaRegistro(@RequestParam String usuario, @RequestParam String correo, @RequestParam String contraseña, Model model) {
-        if (clienteService.validarRegistro(correo)) {
-            return "registro";
-        }
+    public String procesaRegistro(Model model,@Valid Cliente clientee, BindingResult validacion) {
+        String errores = "";
+    	if(validacion.hasErrors()) {
+    		return "registro";
+    	}
         
-        Cliente client = clienteService.nuevoCliente(usuario, correo, contraseña);
-        System.out.println(client.getUsuario());
-        model.addAttribute("cliente", client);
-        
-        return "paginaPrincipal";
+    	
+    	try {
+    		if (clienteService.validarRegistro(clientee.getEmail())) {
+                return "registro";
+            }
+            cliente = clienteService.nuevoCliente(clientee.getUsuario(), clientee.getEmail(), clientee.getPassword());
+            /*cliente = clienteService.nuevoCliente(usuario, email, password);*/
+            System.out.println(cliente.getUsuario());
+            model.addAttribute("cliente", cliente);
+            
+            return "paginaPrincipal";
+    	}catch(Exception e) {
+    		errores = e.toString();
+    	}
+    	model.addAttribute("errores", errores);
+    	return "registro";
+    	
     }
     
     @RequestMapping(value = "/paginaPrincipal", method = RequestMethod.GET)
     public String mostrarPaginaPrincipal(Model model) {
-        // Lógica adicional si es necesario
+       
     	
-        return "paginaPrincipal"; // Asegúrate de que este nombre coincide con tu archivo de vista.
+        return "paginaPrincipal"; 
     }
     
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -94,35 +124,28 @@ public class LoginController {
     
     @RequestMapping(value = "/hacerReservaFinal", method = RequestMethod.POST)
     public String hacerReservaFinal(
-            @RequestParam String nombreServicio,
-            @RequestParam String fechaReserva,
-            @RequestParam String horaReserva,
-            
+            Reservas reservaa,  // Captura el objeto completo
+            @ModelAttribute("cliente") Cliente cliente,  // Asegúrate de tener el cliente disponible
             Model model) {
 
-        // Obtener el servicio usando el nombre
-        Servicio servicio = servicioService.obtenerServicioporNombre(nombreServicio);
-        
-        // Comprobar si el servicio fue encontrado
+          // Obtén el servicio de la reserva
         if (servicio == null) {
             model.addAttribute("error", "El servicio no se encontró.");
             return "error"; // Redirigir a una vista de error si es necesario
         }
 
-        // Convertir los parámetros a LocalDate y LocalTime
-        LocalDate fecha = LocalDate.parse(fechaReserva);
-        LocalTime hora = LocalTime.parse(horaReserva);
-
-        // Crear la reserva con el cliente y el servicio
-        Reservas reserva = new Reservas(fecha, hora, servicio, cliente);
-        reservaService.guardarReserva(reserva,cliente); // Guardar la reserva
-
-        // Mensaje o modelo adicional, si es necesario
-        model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + nombreServicio);
-        model.addAttribute("cliente", cliente);
+        LocalDate fecha = reservaa.getFecha();
+        LocalTime tiempo = reservaa.getTiempo();
+        Reservas reserve = new Reservas (fecha,tiempo,servicio,cliente);
         
-        System.out.println(cliente.getUsuario()+"formulario final");
-        return "paginaPrincipal"; // Redirigir a la vista de login o a otra vista que desees
+        
+        reservaService.guardarReserva(reserve, cliente);
+
+        model.addAttribute("mensaje", "Reserva confirmada para el servicio: " + reserve.getServicio().getNombre());
+        model.addAttribute("cliente", cliente);
+
+        System.out.println(cliente.getUsuario() + " formulario final");
+        return "paginaPrincipal"; 
     }
     
     @RequestMapping(value="/paginaPrincipalServ", method = RequestMethod.GET)
@@ -130,5 +153,17 @@ public class LoginController {
 		model.addAttribute("cliente", cliente);
 		
 	    return "paginaPrincipal";
+	}
+    
+    @RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
+	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,
+	                            @ModelAttribute("cliente") Cliente cliente,
+	                            Model model) {
+	    model.addAttribute("cliente", cliente);
+	    servicio = servicioService.obtenerServicioporNombre(nombreServicio);
+	    Reservas reserva = new Reservas();
+	    /*model.addAttribute("servicio", servicio);*/
+	    model.addAttribute("reservas", reserva); 
+	    return "formularioReserva";
 	}
 }
