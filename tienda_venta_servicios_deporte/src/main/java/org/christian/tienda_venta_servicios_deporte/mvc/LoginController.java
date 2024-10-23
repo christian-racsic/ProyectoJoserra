@@ -170,7 +170,7 @@ public class LoginController {
     
     @RequestMapping(value="/hacerReserva", method = RequestMethod.GET)
 	public String hacerReserva(@RequestParam("nombreServicio") String nombreServicio,
-	                            @ModelAttribute("cliente") Cliente cliente,
+	                            
 	                            Model model) {
 	    model.addAttribute("cliente", cliente);
 	    servicio = servicioService.obtenerServicioporNombre(nombreServicio);
